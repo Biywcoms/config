@@ -1,6 +1,8 @@
 "-----基础配置----
-"不与Vi兼容
+"去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题
 set nocompatible
+set backspace=indent,eol,start
+set backspace=2
 "语法高亮
 syntax on
 "底部显示模式类型
