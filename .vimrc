@@ -129,6 +129,7 @@ Plugin 'SirVer/ultisnips'        "vim插件
 """""""""""plugin configuration"""""""""""""""""""
 "vim-go settings
 let g:go_fmt_command = "goimports"
+map <C-b> <ESC>:GoRun<CR>
 "NERDTree
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
