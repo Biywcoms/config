@@ -89,9 +89,9 @@ set noswapfile
 "保留撤销历史
 set undofile
 "设置保持位置
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
-set undodir=~/.vim/.undo//
+"set backupdir=~/.vim/.backup//
+"set directory=~/.vim/.swp//
+"set undodir=~/.vim/.undo//
 "自动切换工作目录
 set autochdir
 "出错时不要发出响声
