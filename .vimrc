@@ -1,8 +1,6 @@
 "-----基础配置----
-"去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题
+"不与Vi兼容
 set nocompatible
-set backspace=indent,eol,start
-set backspace=2
 "语法高亮
 syntax on
 "底部显示模式类型
@@ -82,16 +80,26 @@ set smartcase
 "----编辑----
 "打开英语单词拼写检查
 "set spell spelllang=en_us
-"不创建备份文件
-set nobackup
-"不创建交换文件
-set noswapfile
+"创建备份文件
+if !isdirectory(expand("~/.vim/.backup"))
+    call mkdir($HOME . "/.vim/.backup","p")
+endif
+set backupdir=~/.vim/.backup//
+set backup
+"创建交换文件
+if !isdirectory(expand("~/.vim/.swp"))
+    call mkdir($HOME . "/.vim/.swp","p")
+endif
+"set dir=~/.vim/swapfiles//
+set directory=~/.vim/.swp//
+set swapfile
 "保留撤销历史
+if !isdirectory(expand("~/.vim/.undo"))
+    call mkdir($HOME . "/.vim/.undo","p")
+endif
+set undodir=~/.vim/.undo//
 set undofile
 "设置保持位置
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
-set undodir=~/.vim/.undo//
 "自动切换工作目录
 set autochdir
 "出错时不要发出响声
