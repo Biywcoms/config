@@ -86,7 +86,7 @@ if !isdirectory(expand("~/.vim/.backup"))
 endif
 set backupdir=~/.vim/.backup//
 set backup
-"创建交换文件
+"创建交换文件buffer
 if !isdirectory(expand("~/.vim/.swp"))
     call mkdir($HOME . "/.vim/.swp","p")
 endif
@@ -99,7 +99,6 @@ if !isdirectory(expand("~/.vim/.undo"))
 endif
 set undodir=~/.vim/.undo//
 set undofile
-"设置保持位置
 "自动切换工作目录
 set autochdir
 "出错时不要发出响声
