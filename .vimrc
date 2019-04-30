@@ -45,13 +45,13 @@ set number
 "显示光标所在行行号，其他行为相对行号。
 set relativenumber
 "光标所在当前行高亮
-set cursorline
+"set cursorline
 "设置行宽
 set textwidth=100
 "自动折行
 set wrap
 "只有遇到指定符号才折行
-set linebreak
+"set linebreak
 "折行处与窗口空出的字符数
 set wrapmargin=2
 "垂直滚动光标距离顶部底部的位置
@@ -86,7 +86,7 @@ if !isdirectory(expand("~/.vim/.backup"))
 endif
 set backupdir=~/.vim/.backup//
 set backup
-"创建交换文件buffer
+"创建交换文件
 if !isdirectory(expand("~/.vim/.swp"))
     call mkdir($HOME . "/.vim/.swp","p")
 endif
@@ -99,12 +99,13 @@ if !isdirectory(expand("~/.vim/.undo"))
 endif
 set undodir=~/.vim/.undo//
 set undofile
+"设置保持位置
 "自动切换工作目录
 set autochdir
 "出错时不要发出响声
 set noerrorbells
 "出错时不要发出视觉提示
-set novisualbell
+"set novisualbell
 "记住多少次历史操作
 set history=1000
 "打开文件监视
@@ -133,10 +134,50 @@ Plugin 'Valloric/YouCompleteMe'  "代码提示
 Plugin 'jiangmiao/auto-pairs'    "括号
 Plugin 'fatih/vim-go'
 Plugin 'SirVer/ultisnips'        "vim插件
+Plugin 'tikhomirov/vim-glsl'     "glsl高亮
+Plugin 'jpalardy/vim-slime'      "scheme插件
 """""""""""plugin configuration"""""""""""""""""""
+"vim-slime settings
+let g:slime_target="vimterminal"
+function SchemeStart()
+    "only if the buffer is a scheme file and no terminal exists
+    if &filetype == "scheme" && len(term_list()) == 0
+        "only start once
+        autocmd! SchemeREPL *
+        augroup! SchemeREPL
+
+        "get original buffer number
+        let original_bufnr = win_getid()
+        "start the terminal, with scheme running
+        let term_bufnr = term_start('scheme', {"term_finish": "close"})
+        "get back to the original buffer
+        call win_gotoid(original_bufnr)
+
+        "no vim-slime menus
+        if !exists("b:slime_config")
+               let b:slime_config = {"bufnr": ""}
+        endif
+        let b:slime_config["bufnr"] = term_bufnr
+    endif
+endfunction
+
+function SchemeSetUp()
+    "everytime a new buffer is read, try to start REPL
+    augroup SchemeREPL
+        autocmd BufRead * :call SchemeStart()
+    augroup END
+    "the time when vim is ready
+    call SchemeStart()
+endfunction
+
+augroup SchemeREPL
+    "when vim is ready, start the script
+    autocmd VimEnter * :call SchemeSetUp()
+augroup END
 "vim-go settings
 let g:go_fmt_command = "goimports"
 map <C-b> <ESC>:GoRun<CR>
+map <C-k> <ESC>:GoFmt<CR>
 "NERDTree
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
