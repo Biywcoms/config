@@ -186,7 +186,7 @@ augroup SchemeREPL
 augroup END
 "vim-go settings
 let g:go_fmt_command = "goimports"
-map <C-r> <ESC>:GoRun<CR>
+map <C-g> <ESC>:GoRun<CR>
 map <C-f> <ESC>:GoFmt<CR>
 "NERDTree
 "F2开启和关闭树"
