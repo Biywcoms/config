@@ -21,6 +21,8 @@ filetype indent on
 colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
+"设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
 "设置帮助文件为中文（需要安装vimcdoc文档）
 set helplang=cn
 
@@ -48,8 +50,8 @@ set relativenumber
 "set cursorline
 "设置行宽
 set textwidth=100
-"关闭折行
-set nowrap
+"自动折行
+set wrap
 "只有遇到指定符号才折行
 "set linebreak
 "折行处与窗口空出的字符数
@@ -64,6 +66,13 @@ set laststatus=2
 set ruler
 " 状态行显示的内容
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+"字体
+"set guifont=YaHei\ Consolas\ Hybrid\ 15.5
+"基于缩进或者语法折叠 za,zM,zR
+"set foldmethod=indent
+set foldmethod=syntax
+"启动时关闭折叠代码
+set foldlevelstart=99
 
 "----搜索----
 "光标遇到括号自动高亮另一个括号
@@ -133,8 +142,8 @@ Plugin 'Valloric/YouCompleteMe'  "代码提示
 "Plugin 'Yggdroot/indentLine'     "缩进指示线
 Plugin 'jiangmiao/auto-pairs'    "括号
 Plugin 'fatih/vim-go'
-Plugin 'SirVer/ultisnips'        "vim插件代码块
-Plugin 'honza/vim-snippets'      "vim插件代码块
+Plugin 'SirVer/ultisnips'        "vim插件模板
+Plugin 'honza/vim-snippets'      "vim插件模板
 Plugin 'tikhomirov/vim-glsl'     "glsl高亮
 Plugin 'jpalardy/vim-slime'      "scheme插件
 """""""""""plugin configuration"""""""""""""""""""
@@ -219,9 +228,9 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串
 let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
 
 "UltiSnips setting
-let g:UltiSnipsExpandTrigger="<c-t>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<C-t>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 
 call vundle#end()
 filetype plugin indent on
