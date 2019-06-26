@@ -48,8 +48,8 @@ set relativenumber
 "set cursorline
 "设置行宽
 set textwidth=100
-"自动折行
-set wrap
+"关闭折行
+set nowrap
 "只有遇到指定符号才折行
 "set linebreak
 "折行处与窗口空出的字符数
@@ -133,7 +133,8 @@ Plugin 'Valloric/YouCompleteMe'  "代码提示
 "Plugin 'Yggdroot/indentLine'     "缩进指示线
 Plugin 'jiangmiao/auto-pairs'    "括号
 Plugin 'fatih/vim-go'
-Plugin 'SirVer/ultisnips'        "vim插件
+Plugin 'SirVer/ultisnips'        "vim插件代码块
+Plugin 'honza/vim-snippets'      "vim插件代码块
 Plugin 'tikhomirov/vim-glsl'     "glsl高亮
 Plugin 'jpalardy/vim-slime'      "scheme插件
 """""""""""plugin configuration"""""""""""""""""""
@@ -176,8 +177,8 @@ augroup SchemeREPL
 augroup END
 "vim-go settings
 let g:go_fmt_command = "goimports"
-map <C-b> <ESC>:GoRun<CR>
-map <C-k> <ESC>:GoFmt<CR>
+map <C-r> <ESC>:GoRun<CR>
+map <C-f> <ESC>:GoFmt<CR>
 "NERDTree
 "F2开启和关闭树"
 map <F2> :NERDTreeToggle<CR>
@@ -219,8 +220,8 @@ let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py
 
 "UltiSnips setting
 let g:UltiSnipsExpandTrigger="<c-t>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 call vundle#end()
 filetype plugin indent on
