@@ -146,6 +146,9 @@ Plugin 'SirVer/ultisnips'        "vim插件模板
 Plugin 'honza/vim-snippets'      "vim插件模板
 Plugin 'tikhomirov/vim-glsl'     "glsl高亮
 Plugin 'jpalardy/vim-slime'      "scheme插件
+Plugin 'godlygeek/tabular'          "markdown
+Plugin 'plasticboy/vim-markdown'    "markdown
+"Plugin 'suan/vim-instant-markdown'  "markdown
 """""""""""plugin configuration"""""""""""""""""""
 "vim-slime settings
 let g:slime_target="vimterminal"
