@@ -11,6 +11,7 @@ set showcmd
 set mouse=a
 "使用utf-8编码
 set encoding=utf-8
+set fencs=utf-8,usc-bom,shift-jis,gb18030,gbk,gb2312,cp936
 "启用256色
 set t_Co=256
 "开启文件类型检查载入相应的缩进规则
@@ -65,7 +66,9 @@ set laststatus=2
 "在状态栏显示当前位置
 set ruler
 " 状态行显示的内容
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+
+set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
 "字体
 "set guifont=YaHei\ Consolas\ Hybrid\ 15.5
 "基于缩进或者语法折叠 za,zM,zR
@@ -129,6 +132,38 @@ set wildmenu
 set autowrite
 "共享剪贴板
 "set clipboard+=unnamed
+
+map<F9> <ESC>:w<CR>:call RunFunc('')<CR>
+func! RunFunc(arg)
+    if &filetype == 'perl' 
+        exec "!perl "a:arg expand('%:p') 
+    elseif  & filetype == 'python' 
+     " 
+    else
+      "
+    endif
+func
+
+nmap <tab> v>
+nmap <s-tab> v<
+
+vmap <tab> >gv
+vmap <s-tab>  <gv
+
+imap ` ``<ESC>i
+imap ( ()<ESC>i
+imap ) <c-r>=ClosePair(')')<C-R>
+
+
+func! ClosePair(char) 
+    if getline('.')[col('.')-1]==a:char
+          return "\<Right>"
+     else
+          return a:char 
+     endif
+func
+
+
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
