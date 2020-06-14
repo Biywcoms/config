@@ -180,11 +180,11 @@ endfunction
 "括号匹配
 imap ( ()<ESC>i
 imap (<CR> (<CR>)<ESC><S-o>
-imap ) <CR>=ClosePair(')')<CR>
+imap ) <c-r>=ClosePair(')')<CR>
 
 imap [ []<ESC>i
 imap [<CR> [<CR>]<ESC><S-o>
-imap ] <CR>=ClosePair(']')<CR>
+imap ] <c-r>=ClosePair(']')<CR>
 
 imap { {}<ESC>i
 imap {<CR> {<CR>}<ESC><S-o>
